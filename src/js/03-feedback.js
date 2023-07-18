@@ -32,6 +32,7 @@ function onFormSubmit(evt) {
     console.log(formDataLs);
     evt.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
+    formDataLs = {"email": "", "message": ""};
   }
 }
 
@@ -40,9 +41,11 @@ function fillFormFields() {
   if (savedData) {
     formDataLs = { ...formDataLs, ...savedData };
     Object.entries(savedData).forEach(([key, value]) => {
-      if (refs[key]) {
-        refs[key].value = value || '';
+    
+      if (refs.form[key]) {
+        refs.form[key].value = value || '';
       }
+      
     });
   }
 }
